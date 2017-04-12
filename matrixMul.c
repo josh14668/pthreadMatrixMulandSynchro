@@ -111,12 +111,22 @@ void *mat_mult_thrds(void *threadarg)
 	printf("\n");
 
 
-	//pthread_mutex_unlock(&mutexLock);
+
 	for(int i=0;i<M;i++){
 		for(int j=a;j<=b;j++){
 			C[i][j]=temp_sub[i][j-a];
 		}
 	}
+
+	for(int i=0;i<K;i++){
+		free(temp_ans[i]);
+	}
+	free(temp_ans);
+
+	for(int i=0;i<M;i++){
+		free(temp_sub[M]);
+	}
+	free(temp_sub);
 
 
 	//retrieve my thread id from *threadarg.
